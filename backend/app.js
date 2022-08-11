@@ -25,7 +25,21 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 // CORS
-app.use(cors);
+app.use(cors({
+  origin: [
+    'https://integrator.nomoredomains.sbs',
+    'http://integrator.nomoredomains.sbs',
+    'https://api.integrator.nomoredomains.sbs',
+    'http://api.integrator.nomoredomains.sbs',
+    'https://www.api.integrator.nomoredomains.sbs',
+    'http://www.api.integrator.nomoredomains.sbs',
+    'http://localhost:3000',
+    'https://localhost:3000',
+    'http://localhost:3001',
+    'https://localhost:3001',
+  ],
+  credentials: true,
+}));
 
 // Подключаем логгер запросов
 app.use(requestLogger);
