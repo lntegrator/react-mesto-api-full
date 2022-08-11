@@ -1,0 +1,9 @@
+.infoToolTip__container{
+    padding: 60px 36px;
+}
+
+@media screen and (max-width: 475px) {
+    .infoToolTip__container{
+        padding: 50px 18px;
+    }
+}

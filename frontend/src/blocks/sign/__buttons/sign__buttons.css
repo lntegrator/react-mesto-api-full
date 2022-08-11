@@ -1,0 +1,14 @@
+.sign__buttons{
+    position: absolute;
+    bottom: 80px;
+    width: 358px;
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 475px) {
+    .sign__buttons{
+        width: calc(100% - 30px * 2);
+        bottom: 40px;
+    }
+}

@@ -1,0 +1,7 @@
+.element__button_active{
+    background: url('../../../../images/fillheart.svg');
+    min-width: 22px;
+    height: 19px;
+    transition: ease-in-out .3s;
+    border: none;
+}

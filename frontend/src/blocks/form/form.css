@@ -1,0 +1,13 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 34px;
+    margin-bottom: 37px;
+    width: calc(100% - 35px * 2);
+}
+
+@media screen and (max-width: 900px) {
+    .form{
+        width: calc(100% - 22px * 2);
+    }
+}

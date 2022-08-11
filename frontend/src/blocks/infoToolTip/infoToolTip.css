@@ -1,0 +1,10 @@
+.infoToolTip{
+    width: 430px;
+    height: 330px;
+}
+
+@media screen and (max-width: 475px) {
+    .infoToolTip{
+        width: calc(100% - 20px * 2);
+    }
+}

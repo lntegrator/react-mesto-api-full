@@ -1,0 +1,12 @@
+.form__input-error{
+    display: none;
+    position: absolute;
+    margin-top: 5px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 15px;
+    color: #FF0000;
+    transition: .3s;
+}

@@ -1,0 +1,17 @@
+.header__sign-out{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: right;
+    color: #fff;
+    background: none;
+    border: none;
+    transition: ease-in-out .3s;
+}
+
+.header__sign-out:hover{
+    opacity: 0.6;
+    cursor: pointer;
+}
