@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 require('dotenv').config();
 
 const { default: mongoose } = require('mongoose');
@@ -8,7 +9,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const { errors } = require('celebrate');
 
-const cors = require('./middlewares/cors');
 const auth = require('./middlewares/auth');
 const routerUsers = require('./routes/users');
 const routerCards = require('./routes/cards');
