@@ -1,5 +1,6 @@
 {
   "name": "mesto-react",
+  "homepage": "http://integrator.nomoredomains.sbs/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
