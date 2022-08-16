@@ -93,6 +93,6 @@ class Api{
 const api = new Api({
     authorization: myToken,
     'Content-Type': 'application/json'
-}, 'http://api.integrator.nomoredomains.sbs')
+}, 'https://api.integrator.nomoredomains.sbs')
 
 export {api}
