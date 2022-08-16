@@ -1,4 +1,4 @@
-const BASE_URL = 'http://integrator.nomoredomains.sbs/'
+const BASE_URL = 'http://integrator.nomoredomains.sbs'
 
 const checkResponse = (res) => {
     if (res.ok) {
