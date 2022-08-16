@@ -9,7 +9,7 @@ const checkResponse = (res) => {
 
 
 export const registration = (password, email) => {
-    return fetch(`${BASE_URL}/signup`, {
+    return fetch(`${BASE_URL}/sign-up`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
@@ -23,7 +23,7 @@ export const registration = (password, email) => {
 }
 
 export const authorization = (password, email) => {
-    return fetch(`${BASE_URL}/signin`, {
+    return fetch(`${BASE_URL}/sign-in`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
