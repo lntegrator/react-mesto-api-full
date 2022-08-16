@@ -1,4 +1,4 @@
-import { myToken } from './constants.js'
+//import { myToken } from './constants.js'
 
 class Api{
     constructor(headers, baseUrl){
@@ -91,7 +91,7 @@ class Api{
 }
 
 const api = new Api({
-    authorization: myToken,
+    //authorization: myToken,
     'Content-Type': 'application/json'
 }, 'https://api.integrator.nomoredomains.sbs')
 
