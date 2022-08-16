@@ -1,5 +1,3 @@
-//import { myToken } from './constants.js'
-
 class Api{
     constructor(headers, baseUrl){
         this._headers = headers;

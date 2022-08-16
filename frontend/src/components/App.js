@@ -236,19 +236,19 @@ function App() {
             onCardLike={handleCardLike}
             onCardDelete={handleCardDelete}
           />
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register
               onRegistration={handleRegistration}
               isInfoTooltipOpen={isInfoTooltipOpen}
             />
           </Route>
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Login 
               onAuthorization={handleAuthorization}
             />
           </Route>
           <Route exact path="*">
-          {loggedIn ? <Redirect to="/"/> : <Redirect to="/sign-in"/>}
+          {loggedIn ? <Redirect to="/"/> : <Redirect to="/signin"/>}
           </Route>
         </Switch>
 
