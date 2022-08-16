@@ -93,6 +93,6 @@ class Api{
 const api = new Api({
     authorization: myToken,
     'Content-Type': 'application/json'
-}, 'https://nomoreparties.co/v1/cohort-40')
+}, 'http://api.integrator.nomoredomains.sbs')
 
 export {api}
