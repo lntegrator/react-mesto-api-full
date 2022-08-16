@@ -79,7 +79,7 @@ class Api{
                 if (res.ok){
                     return res.json()
                 }
-                Promise.reject(`Ошибка ${res.status}`);
+                Promise.reject(`Ошибка ${res.status} текст ошибки: ${res.message}`);
             })
             .then((res) => {
                 return res
