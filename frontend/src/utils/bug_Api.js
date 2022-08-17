@@ -89,6 +89,7 @@ class Api{
 }
 
 const api = new Api({
+    'authorization': `Bearer ${localStorage.getItem('jwt') }`,
     'Content-Type': 'application/json'
 }, 'https://api.integrator.nomoredomains.sbs')
 

@@ -1,7 +1,6 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config();
-
 const { default: mongoose } = require('mongoose');
 
 const { PORT = 3000 } = process.env;
@@ -44,12 +43,14 @@ app.use(cors({
 // Подключаем логгер запросов
 app.use(requestLogger);
 
-// Роуты с валидацией данных
+// Краш-тест
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
 });
+
+// Роуты с валидацией данных
 app.post('/signin', validateLogin, login);
 app.post('/signup', validatePostUser, postUser);
 

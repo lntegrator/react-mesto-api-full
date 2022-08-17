@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.integrator.nomoredomains.sbs/'
+const BASE_URL = 'https://api.integrator.nomoredomains.sbs'
 
 const checkResponse = (res) => {
     if (res.ok) {
@@ -6,7 +6,6 @@ const checkResponse = (res) => {
       }
       return Promise.reject(`Ошибка: ${res.status}`);
 }
-
 
 export const registration = (password, email) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -37,11 +36,12 @@ export const authorization = (password, email) => {
 }
 
 export const checkToken = token => {
+    console.log(token)
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${token}`
+            'authorization': `Bearer ${token}`
         }
     })
     .then(checkResponse)
