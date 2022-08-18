@@ -1,3 +1,5 @@
+import { myToken } from './constants.js'
+
 class Api{
     constructor(headers, baseUrl){
         this._headers = headers;
@@ -89,7 +91,8 @@ class Api{
 }
 
 const api = new Api({
+    authorization: myToken,
     'Content-Type': 'application/json'
-}, 'https://api.integrator.nomoredomains.sbs')
+}, 'https://nomoreparties.co/v1/cohort-40')
 
 export {api}
