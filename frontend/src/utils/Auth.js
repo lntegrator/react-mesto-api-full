@@ -1,4 +1,4 @@
-const BASE_URL = 'https://auth.nomoreparties.co'
+const BASE_URL = 'http://api.integrator.nomoredomains.sbs'
 
 const checkResponse = (res) => {
     if (res.ok) {
@@ -26,6 +26,7 @@ export const authorization = (password, email) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
         headers: {
+            'Accept': 'application/json',
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
@@ -36,12 +37,13 @@ export const authorization = (password, email) => {
     .then(checkResponse);
 }
 
-export const checkToken = token => {
+export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         headers: {
+            'Accept': 'application/json',
             "Content-Type": "application/json",
-            "Authorization" : `Bearer ${token}`
+            authorization: `Bearer ${token}`,
         }
     })
     .then(checkResponse)

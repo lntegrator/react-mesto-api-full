@@ -6,8 +6,10 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
 
     //Подписка на контекст
     const currentUser = useContext(CurrentUserContext);
-    const [name, setName] = useState('');
+    const [name, setName] = useState(null);
     const [description, setDescription] = useState(null);
+
+    console.log(currentUser)
 
     function handleChangeName(e){
         setName(e.target.value);

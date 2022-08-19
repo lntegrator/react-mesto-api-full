@@ -27,8 +27,8 @@ function Register({ loggedIn, onRegistration }){
                 <div className="sign__buttons">
                     <button className="sign__submit">Зарегистрироваться</button>
                     {
-                        <Route path='/sign-up'>
-                            <Link className="sign__link" to='/sign-in'>Уже зарегистрированы? Войти</Link>
+                        <Route path='/signup'>
+                            <Link className="sign__link" to='/signin'>Уже зарегистрированы? Войти</Link>
                         </Route>
                     }
                 </div>

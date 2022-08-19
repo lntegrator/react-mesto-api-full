@@ -1,5 +1,3 @@
-import { myToken } from './constants.js'
-
 class Api{
     constructor(headers, baseUrl){
         this._headers = headers;
@@ -91,8 +89,8 @@ class Api{
 }
 
 const api = new Api({
-    authorization: myToken,
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
-}, 'https://nomoreparties.co/v1/cohort-40')
+}, 'http://api.integrator.nomoredomains.sbs')
 
 export {api}

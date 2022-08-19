@@ -6,7 +6,6 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 function Main(props) {
   //Подписка на контекст
   const currentUser = useContext(CurrentUserContext);
-
   return (
     <main className="content">
       <section className="profile">

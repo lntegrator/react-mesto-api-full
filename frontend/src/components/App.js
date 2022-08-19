@@ -54,9 +54,11 @@ function App() {
     if (jwt){
       auth.checkToken(jwt)
       .then((res) => {
-        if (res){
+        console.log(res.user);
+        if (res) {
+          setEmail(res.user.email);
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setCurrentUser(res.user);
           history.push('/');
         }
       })
@@ -68,22 +70,22 @@ function App() {
 
   //Получаем данные
   useEffect(() => {
-    handleTokenCheck()
-    api.getInfo()
-    .then((res) => {
-      setCurrentUser(res);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-
-    api.getCards()
-    .then((cardsData) => {
-      setCards(cardsData);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    if (loggedIn){
+      api.getInfo()
+      .then((res) => {
+        setCurrentUser(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      api.getCards()
+      .then((cardsData) => {
+        setCards(cardsData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
   }, [])
 
   //Эффект для закрытия попапа ESC
@@ -174,7 +176,7 @@ function App() {
     auth.registration(pass, email)
     .then((res) => {
       setMessage({icon: iconOk, text: 'Вы успешно зарегистрировались!'});
-      history.push('/sign-in');
+      history.push('/signin');
       console.log(res);
     })
     .catch(() => {
@@ -191,7 +193,7 @@ function App() {
     .then((data) => {
       auth.checkToken(data.token)
       .then((res) => {
-        localStorage.setItem('jwt', data.token)
+        localStorage.setItem('jwt', data.token);
         setLoggedIn(true);
         setEmail(res.data.email);
         history.push('/');
