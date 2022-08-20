@@ -38,7 +38,12 @@ module.exports.deleteCard = (req, res, next) => {
           res.send({ message: 'Карточка удалена' });
         });
     })
-    .catch(next);
+    .catch((err) => {
+      if (err.name === 'ValidationError' || err.name === 'CastError') {
+        return next(new BadRequest('Переданы некорректные данные для постановки лайка.'));
+      }
+      return next(err);
+    });
 };
 
 module.exports.likeCard = (req, res, next) => {
