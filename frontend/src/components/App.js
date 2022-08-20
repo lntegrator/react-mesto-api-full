@@ -129,10 +129,10 @@ function App() {
     if (isLiked){
       api.unlikeCard(card._id)
       .then((newCard) => {
-        console.log(newCard)
         setCards((state) =>
                         state.map((currentCard) =>
-                            currentCard._id === card._id ? newCard : currentCard))
+                            currentCard._id === card._id ? newCard.card : currentCard))
+
       })
       .catch((err) => console.log(err))
     }
@@ -141,7 +141,7 @@ function App() {
       .then((newCard) => {
         setCards((state) =>
                         state.map((currentCard) =>
-                            currentCard._id === card._id ? newCard : currentCard))
+                            currentCard._id === card._id ? newCard.card : currentCard))
       })
       .catch((err) => console.log(err))
     }
