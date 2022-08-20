@@ -39,7 +39,8 @@ function Main(props) {
       <section className="elements" aria-label="Места">
         {props.cards.map((card) => (
           <Card 
-          key={card._id} 
+          key={card._id}
+          jopa = {card._id}
           card={card} 
           onCardClick={props.onCardClick}
           onCardLike={props.onCardLike}

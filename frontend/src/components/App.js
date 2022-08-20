@@ -43,9 +43,33 @@ function App() {
     setInfoToolTipOpen(false);
   };
 
+  //Функция авторизации
+  function handleAuthorization(pass, email){
+    auth.authorization(pass, email)
+    .then((data) => {
+      localStorage.setItem('jwt', data.token);
+      auth.checkToken(data.token)
+      .then((res) => {
+        setLoggedIn(true);
+        setEmail(res.user.email);
+        setCurrentUser(res.user);
+        history.push('/');
+      })
+      .catch(() => {
+        setMessage({icon: iconError, text: 'Что-то пошло не так! Попробуйте ещё раз.'});
+        setInfoToolTipOpen(true);
+      })
+    })
+    .catch((err) => {
+      setMessage({icon: iconError, text: 'Что-то пошло не так! Попробуйте ещё раз.'});
+      setInfoToolTipOpen(true);
+      console.log(err);
+    }); 
+  }
+
   //Эффект для проверки токена
   useEffect(() => {
-    handleTokenCheck()
+    handleTokenCheck();
   }, [])
 
   //Функция проверки токена при посещении
@@ -54,7 +78,6 @@ function App() {
     if (jwt){
       auth.checkToken(jwt)
       .then((res) => {
-        console.log(res.user);
         if (res) {
           setEmail(res.user.email);
           setLoggedIn(true);
@@ -70,23 +93,18 @@ function App() {
 
   //Получаем данные
   useEffect(() => {
-    if (loggedIn){
-      api.getInfo()
-      .then((res) => {
-        setCurrentUser(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-      api.getCards()
-      .then((cardsData) => {
-        setCards(cardsData);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (loggedIn) {
+      api._headers.authorization = `Bearer ${localStorage.getItem('jwt')}`
+      Promise.all([api.getInfo(), api.getCards()])
+        .then(([userInfo, cards]) => {
+          setCurrentUser(userInfo.user);
+          setCards(cards);
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     }
-  }, [])
+  }, [loggedIn]);
 
   //Эффект для закрытия попапа ESC
   useEffect(() => {
@@ -105,10 +123,13 @@ function App() {
 
   //Функция лайка карточки
   function handleCardLike(card){
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const likes = card.likes;
+    const check = (element) => element === currentUser._id;
+    const isLiked = likes.some(check);
     if (isLiked){
       api.unlikeCard(card._id)
       .then((newCard) => {
+        console.log(newCard)
         setCards((state) =>
                         state.map((currentCard) =>
                             currentCard._id === card._id ? newCard : currentCard))
@@ -139,7 +160,7 @@ function App() {
   function handleUpdateUser(userInfo){
     api.patchInfo(userInfo)
     .then((newInfo) => {
-      setCurrentUser(newInfo);
+      setCurrentUser(newInfo.user);
       closeAllPopups();
     })
     .catch((err) => {
@@ -151,7 +172,7 @@ function App() {
   function handleUpdateAvatar(link){
     api.patchAvatar(link)
     .then((newInfo) => {
-      setCurrentUser(newInfo);
+      setCurrentUser(newInfo.user);
       closeAllPopups();
     })
     .catch((err) => {
@@ -185,29 +206,6 @@ function App() {
     .finally(() => {
       setInfoToolTipOpen(true);
     })
-  }
-
-  //Функция авторизации
-  function handleAuthorization(pass, email){
-    auth.authorization(pass, email)
-    .then((data) => {
-      auth.checkToken(data.token)
-      .then((res) => {
-        localStorage.setItem('jwt', data.token);
-        setLoggedIn(true);
-        setEmail(res.data.email);
-        history.push('/');
-      })
-      .catch(() => {
-        setMessage({icon: iconError, text: 'Что-то пошло не так! Попробуйте ещё раз.'});
-        setInfoToolTipOpen(true);
-      })
-    })
-    .catch((err) => {
-      setMessage({icon: iconError, text: 'Что-то пошло не так! Попробуйте ещё раз.'});
-      setInfoToolTipOpen(true);
-      console.log(err);
-    }); 
   }
 
   //Функция выхода
