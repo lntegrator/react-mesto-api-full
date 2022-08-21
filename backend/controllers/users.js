@@ -5,7 +5,6 @@ const { NODE_ENV, JWT_SECRET } = process.env;
 const User = require('../models/user');
 const NotFoundError = require('../errors/not-found-err');
 const BadRequest = require('../errors/bad-request');
-const Unauthorized = require('../errors/unauthorized');
 const Conflict = require('../errors/сonflict');
 
 module.exports.getUsers = (req, res, next) => {
@@ -116,7 +115,5 @@ module.exports.login = (req, res, next) => {
       );
       res.send({ token });
     })
-    .catch(() => {
-      next(new Unauthorized('Необходима авторизация'));
-    });
+    .catch(next);
 };
