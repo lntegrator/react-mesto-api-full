@@ -1,0 +1,3 @@
+const jwt = require('jsonwebtoken')
+
+const payload = jwt.verify(eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmZmYjczN2Q4ZDM4OThlZDNkMTgwMDgiLCJpYXQiOjE2NjExNDAxOTIsImV4cCI6MTY2MTc0NDk5Mn0.dEZ0zRney35DVEbnVGAPrv-PJXUNZCSwC30PfatINzw, 95b5299e236fa473b9b985de3b0fd2e91690b8c638ba422472d67267b8ce5a9d)

@@ -81,4 +81,7 @@ app.use((err, req, res, next) => {
 
 app.listen(PORT, () => {
   console.log('all is right');
+  if (process.env.NODE_ENV === 'production') {
+    console.log(process.env.JWT_SECRET);
+  }
 });
